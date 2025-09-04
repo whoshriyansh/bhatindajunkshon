@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-playfair: "Playfair", serif;
+  --font-family: "Montserrat", sans-serif;
+  --color-primary-red: #590e13;
+  --color-secondary-red: #700f16;
+  --color-accent-red: #891017;
+  --color-primary-golden: #eab766;
+  --color-seconday-golden: #f7d9a9;
+  --color-foreground: #ffeed2;
+  --color-primary: #1a0607;
+  --color-primary-black: ;
+}
+
+:root {
+  background-color: #1a0607;
+  color: #eab766;
+}
