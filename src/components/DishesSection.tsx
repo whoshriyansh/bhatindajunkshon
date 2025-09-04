@@ -20,7 +20,7 @@ interface DishProps {
 
 const DishCard: React.FC<DishProps> = ({ img, name, link }) => {
   return (
-    <div className="group relative w-96 h-96 md:w-64 md:h-80 overflow-hidden rounded-lg shadow-lg cursor-pointer mx-auto">
+    <div className="relative aspect-square w-auto group overflow-hidden rounded-lg shadow-lg cursor-pointer ml-4">
       <img
         src={img}
         alt={name}
@@ -43,21 +43,26 @@ const DishCard: React.FC<DishProps> = ({ img, name, link }) => {
   );
 };
 
+const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
+  <div
+    className="absolute left-1 top-1/2 z-20 -translate-y-1/2 cursor-pointer"
+    onClick={onClick}
+  >
+    <Button iconName="MoveLeft" />
+  </div>
+);
+
 const NextArrow = ({ onClick }: { onClick?: () => void }) => (
-  <div className="absolute right-4 top-1/2 z-20 -translate-y-1/2">
-    <Button iconName="MoveRight" onClick={onClick} />
+  <div
+    className="absolute right-1 top-1/2 z-20 -translate-y-1/2 cursor-pointer"
+    onClick={onClick}
+  >
+    <Button iconName="MoveRight" />
   </div>
 );
 
 const DishesSection = () => {
-  interface MyDishes {
-    id: number;
-    img: string;
-    name: string;
-    link: string;
-  }
-
-  const dishes: MyDishes[] = [
+  const dishes = [
     {
       id: 1,
       img: dish1,
@@ -96,22 +101,30 @@ const DishesSection = () => {
   ];
 
   const settings = {
+    centerMode: true,
+    centerPadding: "10px", // matches demo
     dots: false,
     infinite: true,
-    speed: 600,
-    slidesToShow: 4,
+    speed: 500,
+    slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
-    prevArrow: <></>,
+    prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     responsive: [
       {
-        breakpoint: 1024,
-        settings: { slidesToShow: 2 },
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          slidesToShow: 3,
+        },
       },
       {
-        breakpoint: 640,
-        settings: { slidesToShow: 1 },
+        breakpoint: 480,
+        settings: {
+          arrows: true,
+          slidesToShow: 1,
+        },
       },
     ],
   };
@@ -122,7 +135,7 @@ const DishesSection = () => {
         <h1 className="text-4xl font-normal font-playfair text-center">
           Our Dishes
         </h1>
-        <div className="">
+        <div className="max-w-full overflow-hidden">
           <Slider {...settings}>
             {dishes.map((dish) => (
               <DishCard
