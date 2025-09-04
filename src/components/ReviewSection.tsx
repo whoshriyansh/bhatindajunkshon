@@ -1,6 +1,7 @@
 import Slider from "react-slick";
 import { Quote } from "lucide-react";
 import bgImage from "../assets/img2.jpg";
+import Button from "./ui/Button";
 
 interface Review {
   id: number;
@@ -30,14 +31,28 @@ const reviews: Review[] = [
   },
 ];
 
+const NextArrow = ({ onClick }: { onClick?: () => void }) => (
+  <div className="absolute right-4 bottom-20 z-20 -translate-y-1/2">
+    <Button iconName="MoveRight" onClick={onClick} />
+  </div>
+);
+
+const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
+  <div className="absolute left-4 bottom-20 z-20 -translate-y-1/2">
+    <Button iconName="MoveLeft" onClick={onClick} />
+  </div>
+);
+
 const ReviewSection = () => {
   const settings = {
-    dots: true,
-    arrows: false,
+    dots: false,
+    arrows: true,
     infinite: true,
-    speed: 800,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     autoplay: true,
     autoplaySpeed: 5000,
     customPaging: () => (
